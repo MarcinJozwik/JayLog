@@ -1,2 +1,2 @@
 # JayLog
-Filtering and external saves for Unity logger.
+Filtering and external saving for Unity logger.
