@@ -3,6 +3,7 @@
     /// <summary>
     /// Logs game messages in Unity console and in a text file. Filters logs using Log Categories and Log Priorities.
     /// Built upon standard Unity logging system.
+    /// Static access to chosen Log Service
     /// </summary>
     public static class JayLog
     {
