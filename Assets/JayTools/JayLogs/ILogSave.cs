@@ -1,4 +1,4 @@
-﻿namespace JayLog
+﻿﻿namespace JayTools.JayLogs
 {
     /// <summary>
     /// An interface used for saving received logs. 

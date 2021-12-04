@@ -1,28 +1,31 @@
-﻿using JayLog;
+﻿using JayTools.JayLogs;
 using UnityEngine;
 
-public class DebugLogExample : MonoBehaviour
+namespace JayTools.Example
 {
-    void Start()
+    public class DebugLogExample : MonoBehaviour
     {
-        Debug.LogFormat(gameObject, "My message");
-        InvokeRepeating(nameof(Print),1f,2f);
-        JayLog.JayLog.Log($"Message with priority High and category Gameplay", LogPriority.High, LogCategory.Gameplay);
-        JayLog.JayLog.Log($"Message with priority Low and category {LogCategory.Gameplay | LogCategory.Audio}", LogPriority.Low, LogCategory.Gameplay | LogCategory.Audio);
+        void Start()
+        {
+            Debug.LogFormat(gameObject, "My message");
+            InvokeRepeating(nameof(Print),1f,2f);
+            JayLog.Log($"Message with priority High and category Gameplay", LogPriority.High, LogCategory.Gameplay);
+            JayLog.Log($"Message with priority Low and category {LogCategory.Gameplay | LogCategory.Audio}", LogPriority.Low, LogCategory.Gameplay | LogCategory.Audio);
         
-        int categoryMask = PlayerPrefs.GetInt(JayLog.JayLog.LogCategorySaveKey, 0);
-        int priorityMask = PlayerPrefs.GetInt(JayLog.JayLog.LogPrioritySaveKey, 0);
+            int categoryMask = PlayerPrefs.GetInt(JayLogService.LogCategorySaveKey, 0);
+            int priorityMask = PlayerPrefs.GetInt(JayLogService.LogPrioritySaveKey, 0);
 
-        Debug.Log($"Category: {(LogCategory)categoryMask}");
-        Debug.Log($"Priority: {(LogPriority)priorityMask}");
+            Debug.Log($"Category: {(LogCategory)categoryMask}");
+            Debug.Log($"Priority: {(LogPriority)priorityMask}");
         
-        //JayLog.LogWarning("Message with priority and category", LogPriority.High, LogCategory.Gameplay);
-        //JayLog.LogError("Message with priority and category", LogPriority.High, LogCategory.Gameplay);
-        //JayLog.OpenLogFileDirectory();
-    }
+            //JayLog.LogWarning("Message with priority and category", LogPriority.High, LogCategory.Gameplay);
+            //JayLog.LogError("Message with priority and category", LogPriority.High, LogCategory.Gameplay);
+            //JayLog.OpenLogFileDirectory();
+        }
 
-    private void Print()
-    {
-        Debug.Log("Message");
+        private void Print()
+        {
+            Debug.Log("Message");
+        }
     }
 }

@@ -4,10 +4,10 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace JayLog.Editor
+namespace JayTools.JayLogs.Editor
 {
     /// <summary>
-    /// Sets the preferences of the TweenyLog logging system. Includes changing the filter options
+    /// Sets the preferences of the JayLog logging system. Includes changing the filter options
     /// and managing saving settings. 
     /// </summary>
     public class LogEditorWindow : EditorWindow
@@ -29,11 +29,11 @@ namespace JayLog.Editor
         private const string CategoryString = "Active categories: ";
         private const string PriorityString = "Active priorities: ";
 
-        [MenuItem("Tools/Tweeny/Tweeny Log Window")]
+        [MenuItem("Tools/JayTools/Jay Log Window")]
         public static void ShowWindow()
         {
             var window = GetWindow(typeof(LogEditorWindow));
-            window.titleContent = new GUIContent("Tweeny Log");
+            window.titleContent = new GUIContent("Jay Log");
             window.minSize = new Vector2(300,200);
         }
 
@@ -42,9 +42,9 @@ namespace JayLog.Editor
             categories = Enum.GetNames(typeof(LogCategory)).ToArray();
             priorities = Enum.GetNames(typeof(LogPriority)).ToArray();
 
-            appliedCategoryMask = PlayerPrefs.GetInt(JayLog.LogCategorySaveKey, 0);
-            appliedPriorityMask = PlayerPrefs.GetInt(JayLog.LogPrioritySaveKey, 0);
-            clearLogFileOnStart = PlayerPrefs.GetInt(JayLog.ClearLogOnStartKey, 1) == 1;
+            appliedCategoryMask = PlayerPrefs.GetInt(JayLogService.LogCategorySaveKey, 0);
+            appliedPriorityMask = PlayerPrefs.GetInt(JayLogService.LogPrioritySaveKey, 0);
+            clearLogFileOnStart = PlayerPrefs.GetInt(JayLogService.ClearLogOnStartKey, 1) == 1;
 
             categoryPrint = CategoryString + GetCurrentMask(appliedCategoryMask, categories);
             priorityPrint = PriorityString + GetCurrentMask(appliedPriorityMask, priorities);
@@ -55,9 +55,9 @@ namespace JayLog.Editor
 
         private void OnGUI()
         {
-            DrawOptions("Priority", PriorityString, ref appliedPriorityMask, ref visiblePriorityMask, ref priorityPrint, JayLog.LogPrioritySaveKey, priorities);
+            DrawOptions("Priority", PriorityString, ref appliedPriorityMask, ref visiblePriorityMask, ref priorityPrint, JayLogService.LogPrioritySaveKey, priorities);
             EditorGUILayout.Space();
-            DrawOptions("Category", CategoryString, ref appliedCategoryMask, ref visibleCategoryMask, ref categoryPrint, JayLog.LogCategorySaveKey, categories);
+            DrawOptions("Category", CategoryString, ref appliedCategoryMask, ref visibleCategoryMask, ref categoryPrint, JayLogService.LogCategorySaveKey, categories);
             DrawLogFileSettings();
         }
         
@@ -100,7 +100,7 @@ namespace JayLog.Editor
             clearLogFileOnStart = EditorGUILayout.Toggle("Clear Log File On Start", clearLogFileOnStart);
             if (EditorGUI.EndChangeCheck())
             {
-                PlayerPrefs.SetInt(JayLog.ClearLogOnStartKey, clearLogFileOnStart ? 1 : 0);
+                PlayerPrefs.SetInt(JayLogService.ClearLogOnStartKey, clearLogFileOnStart ? 1 : 0);
             }
         }
 

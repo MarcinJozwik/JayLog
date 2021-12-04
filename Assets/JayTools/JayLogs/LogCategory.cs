@@ -1,6 +1,6 @@
-﻿using System;
+﻿﻿using System;
 
-namespace JayLog
+ namespace JayTools.JayLogs
 {
     /// <summary>
     /// A list of example log categories used for filtering log messages across the project.

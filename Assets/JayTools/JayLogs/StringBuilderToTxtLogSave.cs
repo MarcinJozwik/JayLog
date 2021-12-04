@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace JayLog
+namespace JayTools.JayLogs
 {
     /// <summary>
     /// Implementation of ILogSave interface used for storing received logs from logging system.
@@ -22,7 +22,7 @@ namespace JayLog
         /// </summary>
         public void Init()
         {
-            clearLogFileOnStart = PlayerPrefs.GetInt(JayLog.ClearLogOnStartKey, 1) == 1;
+            clearLogFileOnStart = PlayerPrefs.GetInt(JayLogService.ClearLogOnStartKey, 1) == 1;
             
             logFilePath = Application.persistentDataPath + "/jayLog.txt";
             
@@ -65,11 +65,11 @@ namespace JayLog
         {
             logBuilder = new StringBuilder();
             
-            logBuilder.AppendLine("Powered by TweenyLite");
+            logBuilder.AppendLine("Powered by JayTools");
             logBuilder.AppendLine();
-            LogMaskToBuilder("Category", PlayerPrefs.GetInt(JayLog.LogCategorySaveKey, 0), Enum.GetNames(typeof(LogCategory)).ToArray());
+            LogMaskToBuilder("Category", PlayerPrefs.GetInt(JayLogService.LogCategorySaveKey, 0), Enum.GetNames(typeof(LogCategory)).ToArray());
             logBuilder.AppendLine();
-            LogMaskToBuilder("Priority", PlayerPrefs.GetInt(JayLog.LogPrioritySaveKey, 0), Enum.GetNames(typeof(LogPriority)).ToArray());
+            LogMaskToBuilder("Priority", PlayerPrefs.GetInt(JayLogService.LogPrioritySaveKey, 0), Enum.GetNames(typeof(LogPriority)).ToArray());
             logBuilder.AppendLine();
             logBuilder.AppendLine();
         }
