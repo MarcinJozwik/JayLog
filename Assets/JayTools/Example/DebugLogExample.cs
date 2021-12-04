@@ -1,8 +1,7 @@
-﻿using System;
-using JayLog;
+﻿using JayLog;
 using UnityEngine;
 
-public class DebugLogTest : MonoBehaviour
+public class DebugLogExample : MonoBehaviour
 {
     void Start()
     {
@@ -17,9 +16,9 @@ public class DebugLogTest : MonoBehaviour
         Debug.Log($"Category: {(LogCategory)categoryMask}");
         Debug.Log($"Priority: {(LogPriority)priorityMask}");
         
-        //TweenyLog.LogWarning("Message with priority and category", LogPriority.High, LogCategory.Gameplay);
-        //TweenyLog.LogError("Message with priority and category", LogPriority.High, LogCategory.Gameplay);
-        //TweenyLog.OpenLogFileDirectory();
+        //JayLog.LogWarning("Message with priority and category", LogPriority.High, LogCategory.Gameplay);
+        //JayLog.LogError("Message with priority and category", LogPriority.High, LogCategory.Gameplay);
+        //JayLog.OpenLogFileDirectory();
     }
 
     private void Print()
