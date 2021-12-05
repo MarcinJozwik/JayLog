@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEditor;
@@ -28,6 +29,10 @@ namespace JayTools.JayLogs.Editor
 
         private const string CategoryString = "Active categories: ";
         private const string PriorityString = "Active priorities: ";
+
+        private bool saveFoldout;
+        
+        private readonly string [] defineSymbols = {"ENABLE_LOG_FILE"};
 
         [MenuItem("Tools/JayTools/Jay Log Window")]
         public static void ShowWindow()
@@ -96,12 +101,84 @@ namespace JayTools.JayLogs.Editor
         {
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Log File Settings", EditorStyles.boldLabel);
+
+            saveFoldout = EditorGUILayout.Foldout(saveFoldout, "Saving Log File");
+            
+            //foldout here to avoid the constant update of the define symbol list in the button logic
+            if (saveFoldout)
+            {
+                bool showDisableButton = HasAllSymbols();
+
+                if (showDisableButton)
+                {
+                    if (GUILayout.Button("Disable Saving Log File"))
+                    {
+                        RemoveDefineSymbols();
+                    }
+                }
+                else
+                {
+                    if (GUILayout.Button("Enable Saving Log File"))
+                    {
+                        AddDefineSymbols();
+                    }
+                }
+            }
+           
             EditorGUI.BeginChangeCheck();
             clearLogFileOnStart = EditorGUILayout.Toggle("Clear Log File On Start", clearLogFileOnStart);
             if (EditorGUI.EndChangeCheck())
             {
                 PlayerPrefs.SetInt(JayLogService.ClearLogOnStartKey, clearLogFileOnStart ? 1 : 0);
             }
+        }
+        
+        private void AddDefineSymbols()
+        {
+            string definesString = PlayerSettings.GetScriptingDefineSymbolsForGroup ( EditorUserBuildSettings.selectedBuildTargetGroup );
+            
+            List<string> allDefines = definesString.Split ( ';' ).ToList ();
+            allDefines.AddRange ( defineSymbols.Except ( allDefines ) );
+            
+            PlayerSettings.SetScriptingDefineSymbolsForGroup (
+                EditorUserBuildSettings.selectedBuildTargetGroup,
+                string.Join ( ";", allDefines.ToArray () ) );
+        }
+        
+        private void RemoveDefineSymbols()
+        {
+            string definesString = PlayerSettings.GetScriptingDefineSymbolsForGroup ( EditorUserBuildSettings.selectedBuildTargetGroup );
+            
+            List<string> allDefines = definesString.Split ( ';' ).ToList ();
+            
+            foreach (string symbol in defineSymbols)
+            {
+                allDefines.Remove(symbol);
+            }
+            
+            PlayerSettings.SetScriptingDefineSymbolsForGroup (
+                EditorUserBuildSettings.selectedBuildTargetGroup,
+                string.Join ( ";", allDefines.ToArray () ) );
+        }
+
+        private bool HasAllSymbols()
+        {
+            // constant update is required to ensure up-to-date list of define symbols
+            // user can modify the list manually when the Inspector Window is on,
+            // what can lead to some inconsistency
+            
+            string definesString = PlayerSettings.GetScriptingDefineSymbolsForGroup ( EditorUserBuildSettings.selectedBuildTargetGroup );
+            List<string> allDefines = definesString.Split ( ';' ).ToList ();
+            
+            foreach (string symbol in defineSymbols)
+            {
+                if (!allDefines.Contains(symbol))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private static string GetCurrentMask(int mask, string[] options)
