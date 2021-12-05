@@ -30,8 +30,8 @@
         {
             logger = Debug.unityLogger;
             
-            categoryMask = PlayerPrefs.GetInt(LogCategorySaveKey, 0);
-            priorityMask = PlayerPrefs.GetInt(LogPrioritySaveKey, 0);
+            categoryMask = PlayerPrefs.GetInt(JayLogConstants.LogCategorySaveKey, 0);
+            priorityMask = PlayerPrefs.GetInt(JayLogConstants.LogPrioritySaveKey, 0);
 
 #if ENABLE_LOG_FILE
             logSave = new StringBuilderToTxtLogSave();
@@ -98,7 +98,7 @@
         /// <param name="category">The category of the break. Supports multiple categories at once using "|" bitwise operator.</param>
         public void LogBreak(LogPriority priority = LogPriority.Low, LogCategory category = LogCategory.Other)
         {
-            InternalLog(Break, LogType.Log, priority, category);
+            InternalLog(JayLogConstants.Break, LogType.Log, priority, category);
         }
 
         /// <summary>

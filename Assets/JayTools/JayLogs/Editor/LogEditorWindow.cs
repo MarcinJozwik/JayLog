@@ -32,7 +32,7 @@ namespace JayTools.JayLogs.Editor
 
         private bool saveFoldout;
         
-        private readonly string [] defineSymbols = {"ENABLE_LOG_FILE"};
+        private readonly string [] defineSymbols = {JayLogConstants.SaveFileDefineSymbol};
 
         [MenuItem("Tools/JayTools/Jay Log Window")]
         public static void ShowWindow()
@@ -47,9 +47,9 @@ namespace JayTools.JayLogs.Editor
             categories = Enum.GetNames(typeof(LogCategory)).ToArray();
             priorities = Enum.GetNames(typeof(LogPriority)).ToArray();
 
-            appliedCategoryMask = PlayerPrefs.GetInt(JayLogService.LogCategorySaveKey, 0);
-            appliedPriorityMask = PlayerPrefs.GetInt(JayLogService.LogPrioritySaveKey, 0);
-            clearLogFileOnStart = PlayerPrefs.GetInt(JayLogService.ClearLogOnStartKey, 1) == 1;
+            appliedCategoryMask = PlayerPrefs.GetInt(JayLogConstants.LogCategorySaveKey, 0);
+            appliedPriorityMask = PlayerPrefs.GetInt(JayLogConstants.LogPrioritySaveKey, 0);
+            clearLogFileOnStart = PlayerPrefs.GetInt(JayLogConstants.ClearLogOnStartKey, 1) == 1;
 
             categoryPrint = CategoryString + GetCurrentMask(appliedCategoryMask, categories);
             priorityPrint = PriorityString + GetCurrentMask(appliedPriorityMask, priorities);
@@ -60,9 +60,9 @@ namespace JayTools.JayLogs.Editor
 
         private void OnGUI()
         {
-            DrawOptions("Priority", PriorityString, ref appliedPriorityMask, ref visiblePriorityMask, ref priorityPrint, JayLogService.LogPrioritySaveKey, priorities);
+            DrawOptions("Priority", PriorityString, ref appliedPriorityMask, ref visiblePriorityMask, ref priorityPrint, JayLogConstants.LogPrioritySaveKey, priorities);
             EditorGUILayout.Space();
-            DrawOptions("Category", CategoryString, ref appliedCategoryMask, ref visibleCategoryMask, ref categoryPrint, JayLogService.LogCategorySaveKey, categories);
+            DrawOptions("Category", CategoryString, ref appliedCategoryMask, ref visibleCategoryMask, ref categoryPrint, JayLogConstants.LogCategorySaveKey, categories);
             DrawLogFileSettings();
         }
         
@@ -129,7 +129,7 @@ namespace JayTools.JayLogs.Editor
             clearLogFileOnStart = EditorGUILayout.Toggle("Clear Log File On Start", clearLogFileOnStart);
             if (EditorGUI.EndChangeCheck())
             {
-                PlayerPrefs.SetInt(JayLogService.ClearLogOnStartKey, clearLogFileOnStart ? 1 : 0);
+                PlayerPrefs.SetInt(JayLogConstants.ClearLogOnStartKey, clearLogFileOnStart ? 1 : 0);
             }
         }
         

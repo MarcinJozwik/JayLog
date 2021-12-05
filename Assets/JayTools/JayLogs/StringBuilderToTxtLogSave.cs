@@ -22,7 +22,7 @@ namespace JayTools.JayLogs
         /// </summary>
         public void Init()
         {
-            clearLogFileOnStart = PlayerPrefs.GetInt(JayLogService.ClearLogOnStartKey, 1) == 1;
+            clearLogFileOnStart = PlayerPrefs.GetInt(JayLogConstants.ClearLogOnStartKey, 1) == 1;
             
             logFilePath = Application.persistentDataPath + "/jayLog.txt";
             
@@ -72,9 +72,9 @@ namespace JayTools.JayLogs
             
             logBuilder.AppendLine("Powered by JayTools");
             logBuilder.AppendLine();
-            LogMaskToBuilder("Category", PlayerPrefs.GetInt(JayLogService.LogCategorySaveKey, 0), Enum.GetNames(typeof(LogCategory)).ToArray());
+            LogMaskToBuilder("Category", PlayerPrefs.GetInt(JayLogConstants.LogCategorySaveKey, 0), Enum.GetNames(typeof(LogCategory)).ToArray());
             logBuilder.AppendLine();
-            LogMaskToBuilder("Priority", PlayerPrefs.GetInt(JayLogService.LogPrioritySaveKey, 0), Enum.GetNames(typeof(LogPriority)).ToArray());
+            LogMaskToBuilder("Priority", PlayerPrefs.GetInt(JayLogConstants.LogPrioritySaveKey, 0), Enum.GetNames(typeof(LogPriority)).ToArray());
             logBuilder.AppendLine();
             logBuilder.AppendLine();
         }
