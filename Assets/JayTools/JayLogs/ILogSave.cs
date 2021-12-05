@@ -9,6 +9,6 @@
 
         void Save();
 
-        void Open();
+        void Open(bool forceSave);
     }
 }

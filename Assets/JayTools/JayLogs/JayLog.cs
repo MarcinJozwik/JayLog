@@ -81,9 +81,9 @@
         /// <summary>
         /// Opens the log text file
         /// </summary>
-        public static void OpenLogFile()
+        public static void OpenLogFile(bool forceSave)
         {
-            LogService.OpenLogFile();
+            LogService.OpenLogFile(forceSave);
         }
 
         #endregion

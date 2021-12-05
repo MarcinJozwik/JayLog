@@ -44,6 +44,7 @@
         /// <summary>
         /// Opens the log text file
         /// </summary>
-        void OpenLogFile();
+        /// <param name="forceSave"></param>
+        void OpenLogFile(bool forceSave);
     }
 }

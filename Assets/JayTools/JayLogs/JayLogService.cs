@@ -104,10 +104,11 @@
         /// <summary>
         /// Opens the log text file
         /// </summary>
-        public void OpenLogFile()
+        /// <param name="forceSave"></param>
+        public void OpenLogFile(bool forceSave)
         {
 #if ENABLE_LOG_FILE
-            logSave.Open();
+            logSave.Open(forceSave);
 #endif
         }
 

@@ -53,8 +53,13 @@ namespace JayTools.JayLogs
         /// <summary>
         /// Opens the log text file.
         /// </summary>
-        public void Open()
+        public void Open(bool forceSave)
         {
+            if (forceSave)
+            {
+                Save();
+            }
+            
             Application.OpenURL(logFilePath);
         }
 

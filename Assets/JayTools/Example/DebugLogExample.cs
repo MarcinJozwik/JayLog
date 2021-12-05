@@ -8,7 +8,7 @@ namespace JayTools.Example
         void Start()
         {
             //To setup priorities and categories open: Tools -> Jay Tools -> Jay Log Window
-            //By default all is set to nothing, so nothing will show up in the console!
+            //By default all is set to "nothing", so nothing will show up in the console!
             
             JayLog.Log($"Message with priority High and category Gameplay", LogPriority.High, LogCategory.Gameplay);
             
@@ -20,7 +20,10 @@ namespace JayTools.Example
             
             JayLog.LogError("Error message with exception priority and category Other", LogPriority.Exception, LogCategory.Other);
             
-            JayLog.OpenLogFile();
+            //The saving happens on application exit or when exception occurs,
+            //but you can manually force saving current logs on opening the log file.
+            //Log file is store in appropriate AppData folder.
+            JayLog.OpenLogFile(true);
         }
     }
 }

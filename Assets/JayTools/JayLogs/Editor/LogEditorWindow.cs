@@ -8,8 +8,8 @@ using UnityEngine;
 namespace JayTools.JayLogs.Editor
 {
     /// <summary>
-    /// Sets the preferences of the JayLog logging system. Includes changing the filter options
-    /// and managing saving settings. 
+    /// Sets the preferences of the JayLog logging system. Includes changing the filter options,
+    /// managing saving settings and altering define symbols. 
     /// </summary>
     public class LogEditorWindow : EditorWindow
     {
