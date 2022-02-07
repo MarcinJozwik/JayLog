@@ -1,0 +1,17 @@
+{
+    "name": "JayTools.JayLogs.Editor",
+    "references": [
+        "GUID:92dd880b057c40c43b69a7964a6dd8f9"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

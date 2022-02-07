@@ -1,0 +1,15 @@
+{
+    "name": "JayTools.JayLogs",
+    "references": [
+        "GUID:5055ded3537f0a24aa1a33182cef4bb7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
