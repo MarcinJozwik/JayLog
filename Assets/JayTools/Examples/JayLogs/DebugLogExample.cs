@@ -1,7 +1,7 @@
 ﻿using JayTools.JayLogs;
 using UnityEngine;
 
-namespace JayTools.Example
+namespace JayTools.Examples.JayLogs
 {
     public class DebugLogExample : MonoBehaviour
     {

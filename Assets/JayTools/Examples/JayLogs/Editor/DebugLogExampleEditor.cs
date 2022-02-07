@@ -1,4 +1,5 @@
-﻿using JayTools.JayLogs;
+﻿using JayTools.Examples.JayLogs;
+using JayTools.JayLogs;
 using UnityEditor;
 using UnityEngine;
 
